@@ -1,29 +1,29 @@
 const progressElement = document.getElementById('progress');
 const quizContent = document.getElementById('quiz-content');
 
-let progressPercentage = 10; // Barra de progresso inicia em 10%
+let progressPercentage = 10; // Começar com 10% de progresso
 
 // Atualiza a barra de progresso
 function updateProgress(increment = 10) {
     progressPercentage += increment;
-    if (progressPercentage > 100) progressPercentage = 100;  // Garantir que o progresso não ultrapasse 100%
+    if (progressPercentage > 100) progressPercentage = 100;  // Não deixa ultrapassar 100%
     progressElement.style.width = `${progressPercentage}%`;
 }
 
-// Função para iniciar o quiz
+// Função para iniciar o quiz (primeira etapa)
 function startQuiz() {
     quizContent.innerHTML = `
         <div class="headline">Conheça Gaara, o YouTuber que desvendou os cassinos!</div>
         <div class="subheadline">Gaara sempre teve uma curiosidade insaciável sobre como os cassinos funcionam. Mas, ao investigar mais a fundo, ele descobriu algo surpreendente...</div>
         <div class="image-container">
-            <img src="/img/gaara_storytelling.png" alt="Gaara - YouTuber" class="story-image">
+            <img src="/img/face.JPG" alt="Gaara - YouTuber" class="story-image">
         </div>
         <div class="subheadline">Com a ajuda de um misterioso aplicativo russo, Gaara conseguiu identificar falhas nos sistemas dos cassinos, revelando algo que ninguém imaginava...</div>
         <div class="options">
             <button class="start-btn" onclick="continueStory()">Continuar</button>
         </div>
     `;
-    updateProgress(10);  // Inicia o progresso com 10%
+    updateProgress(10); // Adiciona 10% após o primeiro clique
 }
 
 // Função para continuar a história
@@ -39,7 +39,7 @@ function continueStory() {
             <button class="start-btn" onclick="nextStep()">Descubra o Impacto!</button>
         </div>
     `;
-    updateProgress(30);  // Atualiza o progresso para 40% (10% + 30%)
+    updateProgress(30); // Adiciona 30% após continuar a história
 }
 
 // Função para mostrar o impacto da descoberta de Gaara
@@ -55,10 +55,10 @@ function nextStep() {
             <button class="start-btn" onclick="showFinalStep()">Finalizar e Entrar no Jogo!</button>
         </div>
     `;
-    updateProgress(30);  // Atualiza o progresso para 70% (40% + 30%)
+    updateProgress(30); // Adiciona 30% após mostrar o impacto
 }
 
-// Função para finalizar o storytelling
+// Função para finalizar a história
 function showFinalStep() {
     quizContent.innerHTML = `
         <div class="headline">Parabéns!</div>
@@ -67,12 +67,33 @@ function showFinalStep() {
             <button class="start-btn" onclick="restartQuiz()">Refazer a Jornada</button>
         </div>
     `;
-    updateProgress(30);  // Atualiza o progresso para 100% (70% + 30%)
+    updateProgress(30); // Completa o progresso para 100%
 }
 
 // Função para reiniciar o quiz
 function restartQuiz() {
-    progressPercentage = 10;  // Reinicia o progresso para 10%
+    // Reinicia o progresso para 10%
+    progressPercentage = 10;  
     progressElement.style.width = '10%';  // Redefine a barra para 10%
-    startQuiz();  // Reinicia o quiz
+
+    // Reinicia o conteúdo do quiz para a primeira etapa
+    quizContent.innerHTML = `
+        <div class="headline">Você está pronto para transformar sua realidade?</div>
+        <div class="subheadline">Esta é sua oportunidade de acessar o <strong style="color: #666666;">MINES
+                HACK.</strong> Ao baixar este app, prepare-se para
+            mudar <strong style="color: #666666;">sua vida!</strong>
+        </div>
+        <div class="options">
+            <button class="start-btn" onclick="startQuiz()">Sim, quero começar agora!</button>
+            <button class="decline-btn" onclick="declineQuiz()">Prefiro ficar como estou</button>
+        </div>
+    `;
+}
+
+// Função para o caso de recusa do quiz
+function declineQuiz() {
+    quizContent.innerHTML = `
+        <div class="headline">Entendido.</div>
+        <div class="subheadline">Se mudar de ideia, estaremos aqui para ajudar!</div>
+    `;
 }
