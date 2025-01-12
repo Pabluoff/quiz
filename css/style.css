@@ -26,6 +26,23 @@ body {
     margin-top: 20px;
 }
 
+.back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    font-size: 30px;
+    color: #ffffff;
+}
+
+.back-btn ion-icon {
+    transition: transform 0.3s ease;
+}
+
+.back-btn ion-icon:hover {
+    transform: scale(1.2);
+}
+
 .logo {
     width: 130px;
     margin: 0 auto;
@@ -90,7 +107,7 @@ body {
     background-color: #28A745;
     color: white;
     padding: 15px;
-    font-size: 14px;
+    font-size: 15px;
     border-radius: 5px;
     font-weight: bold;
     margin-bottom: 20px;

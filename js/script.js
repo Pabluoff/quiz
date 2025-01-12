@@ -1,8 +1,9 @@
 const progressElement = document.getElementById("progress");
 const quizContent = document.getElementById("quiz-content");
+let progressPercentage = 10;
 
-let progressPercentage = 10; 
-
+// Histórico para armazenar os estados anteriores do quiz
+const quizHistory = [];
 
 function updateProgress(increment = 10) {
     progressPercentage += increment;
@@ -11,6 +12,7 @@ function updateProgress(increment = 10) {
 }
 
 function startQuiz() {
+    saveStateToHistory();
     quizContent.innerHTML = `
         <div class="headline">Quem é Gaara?</div>
         <div class="texto-sub">
@@ -30,6 +32,7 @@ function startQuiz() {
 }
 
 function exposeTruth() {
+    saveStateToHistory();
     quizContent.innerHTML = `
         <div class="headline">Eu Decidi Expor Tudo!</div>
         <div class="texto-sub">
@@ -52,6 +55,7 @@ function exposeTruth() {
 }
 
 function showWarning() {
+    saveStateToHistory();
     quizContent.innerHTML = `
         <div class="warning">
             <ion-icon name="alert-circle-outline"></ion-icon> PRESTA ATENÇÃO!
@@ -74,19 +78,21 @@ function showWarning() {
 }
 
 function startQuizQuestion() {
+    saveStateToHistory();
     quizContent.innerHTML = `
-       <div class="headline">Responda:</div>
-       <div class="options">
-          <button class="quiz-option" onclick="passFirstTest()"><ion-icon name="calculator-outline"></ion-icon> Perdi dinheiro com influenciadores</button>
-          <button class="quiz-option" onclick="passFirstTest()"><ion-icon name="cash-outline"></ion-icon> Preciso de dinheiro ainda este mês</button>
-          <button class="quiz-option" onclick="failTest()"><ion-icon name="sad-outline"></ion-icon> Não tenho um centavo para investir</button>
-       </div>
+        <div class="headline">Responda:</div>
+        <div class="options">
+            <button class="quiz-option" onclick="passFirstTest()"><ion-icon name="calculator-outline"></ion-icon> Perdi dinheiro com influenciadores</button>
+            <button class="quiz-option" onclick="passFirstTest()"><ion-icon name="cash-outline"></ion-icon> Preciso de dinheiro ainda este mês</button>
+            <button class="quiz-option" onclick="failTest()"><ion-icon name="sad-outline"></ion-icon> Não tenho um centavo para investir</button>
+        </div>
     `;
     updateProgress(10);
     scrollToTop(); 
 }
 
 function passFirstTest() {
+    saveStateToHistory();
     quizContent.innerHTML = `
         <div class="success">Parabéns, você passou na primeira prova!</div>
         <div class="texto-sub">
@@ -102,6 +108,7 @@ function passFirstTest() {
 }
 
 function unlockStep() {
+    saveStateToHistory();
     quizContent.innerHTML = `
         <div class="pre-warning">VOCÊ Desbloqueou o Próximo Passo!</div>
         <div class="texto-sub">
@@ -119,6 +126,7 @@ function unlockStep() {
 }
 
 function showVideo() {
+    saveStateToHistory();
     quizContent.innerHTML = `
         <div class="pre-warning"><ion-icon name="warning-outline"></ion-icon>Assista com Atenção!</div>
         <div class="texto-video">
@@ -134,7 +142,6 @@ function showVideo() {
     scrollToTop(); 
 }
 
-
 function scrollToTop() {
     window.scrollTo({
         top: 0,
@@ -147,6 +154,7 @@ function redirectToSoftware() {
 }
 
 function failTest() {
+    saveStateToHistory();
     quizContent.innerHTML = `
         <div class="headline">Oportunidade Perdida</div>
         <div class="subheadline">
@@ -160,6 +168,7 @@ function failTest() {
     `;
     updateProgress(0); 
 }
+
 function restartQuiz() {
     progressPercentage = 10;
     progressElement.style.width = "10%";
@@ -192,3 +201,16 @@ function declineQuiz() {
     `;
 }
 
+// Função para salvar o estado atual no histórico
+function saveStateToHistory() {
+    quizHistory.push(quizContent.innerHTML);
+}
+
+// Função para voltar ao estado anterior
+function goBack() {
+    if (quizHistory.length > 0) {
+        quizContent.innerHTML = quizHistory.pop();
+        progressPercentage -= 10;
+        progressElement.style.width = `${progressPercentage}%`;
+    }
+}
