@@ -6,7 +6,7 @@ let progressPercentage = 10; // Começar com 10% de progresso
 // Atualiza a barra de progresso
 function updateProgress(increment = 10) {
     progressPercentage += increment;
-    if (progressPercentage > 90) progressPercentage = 90; // Alterar para 90% no quiz do vídeo
+    if (progressPercentage > 100) progressPercentage = 100;
     progressElement.style.width = `${progressPercentage}%`;
 }
 
@@ -17,7 +17,7 @@ function startQuiz() {
             Se você não me conhece, meu nome é Huri Alexandre, mais conhecido como <strong>Gaara</strong>. Muitas pessoas não têm ideia de como faço dinheiro online em cassinos. Chegou a hora de contar a verdade.
         </div>
         <div class="image-container">
-            <img src="/img/face.JPG" alt="Gaara" class="story-image">
+            <img src="img/face.JPG" alt="Gaara" class="story-image">
         </div>
         <div class="options">
             <button class="start-btn" onclick="exposeTruth()">
@@ -35,7 +35,7 @@ function exposeTruth() {
             A verdade é que a maioria dos influenciadores sabe disso, mas <strong>todos escondem</strong> a oportunidade de você ganhar. Estou arriscando muito ao compartilhar, mas você merece saber.
         </div>
         <div class="image-container">
-            <img src="/img/money.JPG" alt="Exposição da Verdade" class="story-image">
+            <img src="img/money.JPG" alt="Exposição da Verdade" class="story-image">
         </div>
         <div class="texto-sub">
             O <strong>Mines Hack</strong> é o único software funcional em 2025. Ele utiliza inteligência artificial para identificar falhas e aumentar sua assertividade em até 98%.
@@ -46,7 +46,7 @@ function exposeTruth() {
             </button>
         </div>
     `;
-    updateProgress(20);
+    updateProgress(10);
 }
 
 function showWarning() {
@@ -59,7 +59,7 @@ function showWarning() {
             Se você reprovar, <strong>não terá outra chance</strong>. Esta é sua única oportunidade de mudar seu destino.
         </div>
         <div class="image-container">
-            <img src="/img/IMG_7302.GIF" alt="Última Chance" class="story-image">
+            <img src="img/IMG_7302.GIF" alt="Última Chance" class="story-image">
         </div>
         <div class="options">
             <button class="start-btn" onclick="startQuizQuestion()">
@@ -67,7 +67,7 @@ function showWarning() {
             </button>
         </div>
     `;
-    updateProgress(20);
+    updateProgress(10);
 }
 
 function startQuizQuestion() {
@@ -76,9 +76,10 @@ function startQuizQuestion() {
        <div class="options">
           <button class="quiz-option" onclick="passFirstTest()"><ion-icon name="calculator-outline"></ion-icon> Perdi dinheiro com influenciadores</button>
           <button class="quiz-option" onclick="passFirstTest()"><ion-icon name="cash-outline"></ion-icon> Preciso de dinheiro ainda este mês</button>
-         <button class="quiz-option" onclick="failTest()"><ion-icon name="sad-outline"></ion-icon> Não tenho um centavo para investir</button>
+          <button class="quiz-option" onclick="failTest()"><ion-icon name="sad-outline"></ion-icon> Não tenho um centavo para investir</button>
        </div>
     `;
+    updateProgress(10);
 }
 
 function passFirstTest() {
@@ -92,6 +93,7 @@ function passFirstTest() {
             <button class="quiz-option" onclick="failTest()">Eu não tenho dinheiro agora</button>
         </div>
     `;
+    updateProgress(10);
 }
 
 function unlockStep() {
@@ -101,28 +103,32 @@ function unlockStep() {
             Assista tudo e comece a ganhar ainda hoje!
         </div>
         <div class="image-container">
-            <img src="/img/IMG_7303.PNG" alt="Vídeo Explicativo" class="story-image">
+            <img src="img/IMG_7303.PNG" alt="Vídeo Explicativo" class="story-image">
         </div>
         <div class="options">
             <button class="start-btn" onclick="showVideo()"> <ion-icon name="play-circle"></ion-icon>Assistir Agora</button>
         </div>
     `;
-    updateProgress(30);
+    updateProgress(10);
 }
 
 function showVideo() {
     quizContent.innerHTML = `
         <div class="pre-warning"><ion-icon name="warning-outline"></ion-icon>Assista com Atenção!</div>
         <div class="texto-video">
-            Esse vídeo pode <strong>mudar sua vida! </strong
+            Esse vídeo pode <strong>mudar sua vida!</strong>
         </div>
         <div class="options">
-            <button class="start-btn blink" onclick="restartQuiz()">
+            <button class="start-btn blink" onclick="redirectToSoftware()">
                 Acessar o software agora!
             </button>
         </div>
     `;
     updateProgress(10);
+}
+
+function redirectToSoftware() {
+    window.open('https://example.com', '_blank');
 }
 
 function failTest() {
@@ -137,8 +143,8 @@ function failTest() {
             </button>
         </div>
     `;
+    updateProgress(0); // Reinicia o progresso
 }
-
 function restartQuiz() {
     progressPercentage = 10;
     progressElement.style.width = "10%";
@@ -156,9 +162,18 @@ function restartQuiz() {
 
 function declineQuiz() {
     quizContent.innerHTML = `
-        <div class="headline">Tudo Bem!</div>
-        <div class="subheadline">
-            Se mudar de ideia, saiba que estaremos aqui para ajudar a transformar seu futuro.
+        <div class="headline">Quantas oportunidades você já deixou escapar?</div>
+        <div class="texto-sub">
+            Quantas vezes você prometeu a si mesmo que a <strong>próxima chance</strong> seria diferente? 
+            Sem ação, não há progresso. Sem progresso, o amanhã será apenas uma repetição do hoje. 
+            Ao recusar agora, você está decidindo que permanecer no mesmo lugar é o suficiente. 
+            Mas lembre-se: o tempo não volta, e as chances não esperam.
+        </div>
+        <div class="options">
+            <button class="start-btn" onclick="restartQuiz()">
+                <ion-icon name="refresh-outline"></ion-icon> Não Deixe Isso Escapar
+            </button>
         </div>
     `;
 }
+
