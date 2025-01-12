@@ -1,9 +1,9 @@
 const progressElement = document.getElementById("progress");
 const quizContent = document.getElementById("quiz-content");
 
-let progressPercentage = 10; // Começar com 10% de progresso
+let progressPercentage = 10; 
 
-// Atualiza a barra de progresso
+
 function updateProgress(increment = 10) {
     progressPercentage += increment;
     if (progressPercentage > 100) progressPercentage = 100;
@@ -26,6 +26,7 @@ function startQuiz() {
         </div>
     `;
     updateProgress(10);
+    scrollToTop(); 
 }
 
 function exposeTruth() {
@@ -47,6 +48,7 @@ function exposeTruth() {
         </div>
     `;
     updateProgress(10);
+    scrollToTop(); 
 }
 
 function showWarning() {
@@ -68,6 +70,7 @@ function showWarning() {
         </div>
     `;
     updateProgress(10);
+    scrollToTop(); 
 }
 
 function startQuizQuestion() {
@@ -80,6 +83,7 @@ function startQuizQuestion() {
        </div>
     `;
     updateProgress(10);
+    scrollToTop(); 
 }
 
 function passFirstTest() {
@@ -94,6 +98,7 @@ function passFirstTest() {
         </div>
     `;
     updateProgress(10);
+    scrollToTop(); 
 }
 
 function unlockStep() {
@@ -110,6 +115,7 @@ function unlockStep() {
         </div>
     `;
     updateProgress(10);
+    scrollToTop(); 
 }
 
 function showVideo() {
@@ -125,6 +131,15 @@ function showVideo() {
         </div>
     `;
     updateProgress(10);
+    scrollToTop(); 
+}
+
+
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'  
+    });
 }
 
 function redirectToSoftware() {
@@ -143,7 +158,7 @@ function failTest() {
             </button>
         </div>
     `;
-    updateProgress(0); // Reinicia o progresso
+    updateProgress(0); 
 }
 function restartQuiz() {
     progressPercentage = 10;
