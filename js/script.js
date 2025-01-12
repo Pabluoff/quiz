@@ -1,99 +1,164 @@
-const progressElement = document.getElementById('progress');
-const quizContent = document.getElementById('quiz-content');
+const progressElement = document.getElementById("progress");
+const quizContent = document.getElementById("quiz-content");
 
 let progressPercentage = 10; // Começar com 10% de progresso
 
 // Atualiza a barra de progresso
 function updateProgress(increment = 10) {
     progressPercentage += increment;
-    if (progressPercentage > 100) progressPercentage = 100;  // Não deixa ultrapassar 100%
+    if (progressPercentage > 90) progressPercentage = 90; // Alterar para 90% no quiz do vídeo
     progressElement.style.width = `${progressPercentage}%`;
 }
 
-// Função para iniciar o quiz (primeira etapa)
 function startQuiz() {
     quizContent.innerHTML = `
-        <div class="headline">Conheça Gaara, o YouTuber que desvendou os cassinos!</div>
-        <div class="subheadline">Gaara sempre teve uma curiosidade insaciável sobre como os cassinos funcionam. Mas, ao investigar mais a fundo, ele descobriu algo surpreendente...</div>
+        <div class="headline">Quem é Gaara?</div>
+        <div class="texto-sub">
+            Se você não me conhece, meu nome é Huri Alexandre, mais conhecido como <strong>Gaara</strong>. Muitas pessoas não têm ideia de como faço dinheiro online em cassinos. Chegou a hora de contar a verdade.
+        </div>
         <div class="image-container">
-            <img src="/img/face.JPG" alt="Gaara - YouTuber" class="story-image">
+            <img src="/img/face.JPG" alt="Gaara" class="story-image">
         </div>
-        <div class="subheadline">Com a ajuda de um misterioso aplicativo russo, Gaara conseguiu identificar falhas nos sistemas dos cassinos, revelando algo que ninguém imaginava...</div>
         <div class="options">
-            <button class="start-btn" onclick="continueStory()">Continuar</button>
+            <button class="start-btn" onclick="exposeTruth()">
+                Continuar
+            </button>
         </div>
     `;
-    updateProgress(10); // Adiciona 10% após o primeiro clique
+    updateProgress(10);
 }
 
-// Função para continuar a história
-function continueStory() {
+function exposeTruth() {
     quizContent.innerHTML = `
-        <div class="headline">A Revolução nos Cassinos</div>
-        <div class="subheadline">Gaara descobriu que esse aplicativo russo tinha o poder de analisar as falhas nos cassinos online, identificando padrões que nem os desenvolvedores sabiam que existiam!</div>
+        <div class="headline">Eu Decidi Expor Tudo!</div>
+        <div class="texto-sub">
+            A verdade é que a maioria dos influenciadores sabe disso, mas <strong>todos escondem</strong> a oportunidade de você ganhar. Estou arriscando muito ao compartilhar, mas você merece saber.
+        </div>
         <div class="image-container">
-            <img src="/img/app_russo.png" alt="Aplicativo Russo" class="story-image">
+            <img src="/img/money.JPG" alt="Exposição da Verdade" class="story-image">
         </div>
-        <div class="subheadline">Ao compartilhar sua descoberta, Gaara rapidamente ganhou a atenção de milhões de pessoas, tornando-se uma referência no assunto.</div>
+        <div class="texto-sub">
+            O <strong>Mines Hack</strong> é o único software funcional em 2025. Ele utiliza inteligência artificial para identificar falhas e aumentar sua assertividade em até 98%.
+        </div>
         <div class="options">
-            <button class="start-btn" onclick="nextStep()">Descubra o Impacto!</button>
+            <button class="start-btn" onclick="showWarning()">
+                Como Funciona?
+            </button>
         </div>
     `;
-    updateProgress(30); // Adiciona 30% após continuar a história
+    updateProgress(20);
 }
 
-// Função para mostrar o impacto da descoberta de Gaara
-function nextStep() {
+function showWarning() {
     quizContent.innerHTML = `
-        <div class="headline">O Impacto da Descoberta</div>
-        <div class="subheadline">A revelação de Gaara abalou o mundo dos cassinos online. Agora, muitas pessoas estavam se perguntando: como usar essas falhas a seu favor?</div>
+        <div class="warning">
+            <ion-icon name="alert-circle-outline"></ion-icon> PRESTA ATENÇÃO!
+        </div>
+        <div class="headline">TEMPO LIMITADO PARA ACESSAR O SOFTWARE</div>
+        <div class="subheadline">
+            Se você reprovar, <strong>não terá outra chance</strong>. Esta é sua única oportunidade de mudar seu destino.
+        </div>
         <div class="image-container">
-            <img src="/img/cassino_impacto.png" alt="Impacto nos Cassinos" class="story-image">
+            <img src="/img/IMG_7302.GIF" alt="Última Chance" class="story-image">
         </div>
-        <div class="subheadline">A próxima etapa da jornada de Gaara será ainda mais impressionante. Mas será que ele irá compartilhar ainda mais segredos?</div>
         <div class="options">
-            <button class="start-btn" onclick="showFinalStep()">Finalizar e Entrar no Jogo!</button>
+            <button class="start-btn" onclick="startQuizQuestion()">
+                Entrar no Jogo!
+            </button>
         </div>
     `;
-    updateProgress(30); // Adiciona 30% após mostrar o impacto
+    updateProgress(20);
 }
 
-// Função para finalizar a história
-function showFinalStep() {
+function startQuizQuestion() {
     quizContent.innerHTML = `
-        <div class="headline">Parabéns!</div>
-        <div class="subheadline">Você acompanhou toda a jornada de Gaara, agora é hora de tomar decisões que podem transformar sua vida, assim como ele transformou a realidade dos cassinos online!</div>
-        <div class="options">
-            <button class="start-btn" onclick="restartQuiz()">Refazer a Jornada</button>
-        </div>
+       <div class="headline">Responda:</div>
+       <div class="options">
+          <button class="quiz-option" onclick="passFirstTest()"><ion-icon name="calculator-outline"></ion-icon> Perdi dinheiro com influenciadores</button>
+          <button class="quiz-option" onclick="passFirstTest()"><ion-icon name="cash-outline"></ion-icon> Preciso de dinheiro ainda este mês</button>
+         <button class="quiz-option" onclick="failTest()"><ion-icon name="sad-outline"></ion-icon> Não tenho um centavo para investir</button>
+       </div>
     `;
-    updateProgress(30); // Completa o progresso para 100%
 }
 
-// Função para reiniciar o quiz
+function passFirstTest() {
+    quizContent.innerHTML = `
+        <div class="success">Parabéns, você passou na primeira prova!</div>
+        <div class="texto-sub">
+            Agora vamos descobrir se você vai <strong>REPROVAR</strong> ou desbloquear a chave para fazer dinheiro hoje mesmo.
+        </div>
+        <div class="options">
+            <button class="quiz-option" onclick="unlockStep()">Eu quero acessar o software</button>
+            <button class="quiz-option" onclick="failTest()">Eu não tenho dinheiro agora</button>
+        </div>
+    `;
+}
+
+function unlockStep() {
+    quizContent.innerHTML = `
+        <div class="pre-warning">VOCÊ Desbloqueou o Próximo Passo!</div>
+        <div class="texto-sub">
+            Assista tudo e comece a ganhar ainda hoje!
+        </div>
+        <div class="image-container">
+            <img src="/img/IMG_7303.PNG" alt="Vídeo Explicativo" class="story-image">
+        </div>
+        <div class="options">
+            <button class="start-btn" onclick="showVideo()"> <ion-icon name="play-circle"></ion-icon>Assistir Agora</button>
+        </div>
+    `;
+    updateProgress(30);
+}
+
+function showVideo() {
+    quizContent.innerHTML = `
+        <div class="pre-warning"><ion-icon name="warning-outline"></ion-icon>Assista com Atenção!</div>
+        <div class="texto-video">
+            Esse vídeo pode <strong>mudar sua vida! </strong
+        </div>
+        <div class="options">
+            <button class="start-btn blink" onclick="restartQuiz()">
+                Acessar o software agora!
+            </button>
+        </div>
+    `;
+    updateProgress(10);
+}
+
+function failTest() {
+    quizContent.innerHTML = `
+        <div class="headline">Oportunidade Perdida</div>
+        <div class="subheadline">
+            Você não está pronto para mudar sua realidade agora. Volte quando estiver preparado para assumir o controle do seu futuro.
+        </div>
+        <div class="options">
+            <button class="start-btn" onclick="restartQuiz()">
+                <ion-icon name="reload"></ion-icon> Recomeçar
+            </button>
+        </div>
+    `;
+}
+
 function restartQuiz() {
-    // Reinicia o progresso para 10%
-    progressPercentage = 10;  
-    progressElement.style.width = '10%';  // Redefine a barra para 10%
-
-    // Reinicia o conteúdo do quiz para a primeira etapa
+    progressPercentage = 10;
+    progressElement.style.width = "10%";
     quizContent.innerHTML = `
         <div class="headline">Você está pronto para transformar sua realidade?</div>
-        <div class="subheadline">Esta é sua oportunidade de acessar o <strong style="color: #666666;">MINES
-                HACK.</strong> Ao baixar este app, prepare-se para
-            mudar <strong style="color: #666666;">sua vida!</strong>
-        </div>
+        <div class="subheadline">Esta é sua oportunidade de acessar o <strong>Mines Hack</strong> e mudar sua vida.</div>
         <div class="options">
-            <button class="start-btn" onclick="startQuiz()">Sim, quero começar agora!</button>
+            <button class="start-btn" onclick="startQuiz()">
+                Sim, quero começar agora!
+            </button>
             <button class="decline-btn" onclick="declineQuiz()">Prefiro ficar como estou</button>
         </div>
     `;
 }
 
-// Função para o caso de recusa do quiz
 function declineQuiz() {
     quizContent.innerHTML = `
-        <div class="headline">Entendido.</div>
-        <div class="subheadline">Se mudar de ideia, estaremos aqui para ajudar!</div>
+        <div class="headline">Tudo Bem!</div>
+        <div class="subheadline">
+            Se mudar de ideia, saiba que estaremos aqui para ajudar a transformar seu futuro.
+        </div>
     `;
 }
