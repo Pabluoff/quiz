@@ -4,6 +4,40 @@
     box-sizing: border-box;
 }
 
+
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: #121212;
+    border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: #3d3d3d;
+}
+
+
+::-webkit-scrollbar-horizontal {
+    height: 12px;
+}
+
+
+::-webkit-scrollbar-vertical {
+    width: 12px;
+}
+
+
 body {
     background: #121212;
     color: #fff;
@@ -189,7 +223,7 @@ body {
     font-size: 13px;
 }
 
-/* Estilo melhorado para o Ionicon */
+
 ion-icon {
     font-size: 30px;
     margin: 0 10px;
